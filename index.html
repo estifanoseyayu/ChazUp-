@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>ChazUp — App</title>
+
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <button id="menuBtn" class="icon-btn" aria-label="Toggle menu">☰</button>
+        <div class="brand">
+          <div class="logo">C</div>
+          <div>
+            <div style="font-size: 14px">ChazUp</div>
+            <div style="font-size: 12px; color: var(--muted)">Make things happen</div>
+          </div>
+        </div>
+        <div class="grow"></div>
+        <div class="flex">
+          <button id="openModalBtn" class="btn">🔎🔍</button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <nav class="sidebar" id="sidebar" aria-label="Main navigation">
+          <div style="font-weight: 700; margin-bottom: 8px">ChazUp</div>
+          <div class="nav-item active" data-tab="home">Home</div>
+          <div class="nav-item" data-tab="explore">Explore</div>
+          <div class="nav-item" data-tab="reports">Reports</div>
+          <hr style="margin: 12px 0; border: none; border-top: 1px solid #f0f0f3" />
+          <div style="font-weight: 700; margin-bottom: 8px">Projects</div>
+          <div class="nav-item" ><a href="./projects/chazup.html">ChazUp by estifanos</a></div>
+          <div class="nav-item" ><a href="./projects/sebakin.html">SEBAKIN by chazup.ink</a></div>
+        </nav>
+
+        <main class="content" id="mainContent">
+          <section id="tab-home">
+            <div style="display: flex; justify-content: space-between; align-items: center">
+              <h2>Feed</h2>
+              <div class="flex">
+                <input
+                  id="search"
+                  placeholder="Search"
+                  style="
+                    padding: 8px 10px;
+                    border-radius: 10px;
+                    border: 1px solid #eee;
+                    min-width: 160px;
+                  "
+                />
+                <button id="composeBtn" class="btn">Post</button>
+              </div>
+            </div>
+
+            <div id="feed" style="margin-top: 14px; display: grid; gap: 12px">
+              <!-- posts injected here -->
+            </div>
+          </section>
+
+          <section id="tab-reels" style="display: none">
+            <h2>Reels</h2>
+            <div
+              id="reels"
+              style="
+                margin-top: 12px;
+                height: 70vh;
+                overflow: hidden;
+                border-radius: 12px;
+                background: #000;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+              "
+            >
+              <!-- reels injected -->
+            </div>
+          </section>
+
+          <section id="tab-inbox" style="display: none">
+            <h2>Inbox</h2>
+            <div style="display: flex; gap: 12px; margin-top: 12px">
+              <div
+                style="
+                  width: 260px;
+                  background: var(--surface);
+                  padding: 10px;
+                  border-radius: 10px;
+                  box-shadow: var(--shadow);
+                  height: 60vh;
+                  overflow: auto;
+                "
+              >
+                <div id="conversations"></div>
+              </div>
+              <div
+                id="chatWindow"
+                style="
+                  flex: 1;
+                  background: var(--surface);
+                  padding: 12px;
+                  border-radius: 10px;
+                  box-shadow: var(--shadow);
+                  display: flex;
+                  flex-direction: column;
+                  height: 60vh;
+                "
+              >
+                <div id="chatHeader" style="font-weight: 700">Select a conversation</div>
+                <div id="messages" style="flex: 1; overflow: auto; padding: 10px"></div>
+                <div style="display: flex; gap: 8px; margin-top: 8px">
+                  <input
+                    id="chatInput"
+                    style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ececf3"
+                    placeholder="Message..."
+                  />
+                  <button id="sendMsg" class="btn">Send</button>
+                </div>
+              </div>
+            </div>
+          </section>
+           <section id="tab-profile" style="display: none">
+            <h2>profile</h2>
+          </section>
+          <section id="tab-explore" style="display: none">
+            <h2>explore</h2>
+          </section>
+           <section id="tab-reports" style="display: none">
+            <h2>reports</h2>
+          </section>
+        </main>
+      </div>
+
+      <div class="overlay" id="overlay" tabindex="-1" aria-hidden="true"></div>
+
+      <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 8px;
+            "
+          >
+            <div id="modalTitle" style="font-weight: 700">Create Item</div>
+            <button id="closeModalBtn" class="icon-btn" aria-label="Close">✕</button>
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 6px">Title</label>
+            <input
+              id="modalInput"
+              style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ececf3"
+            />
+          </div>
+          <div style="margin-top: 12px; text-align: right">
+            <button id="createBtn" class="btn">Create</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-tabs" role="tablist" aria-label="Bottom navigation">
+        <div class="tab-btn active" data-tab="home">Feed</div>
+        <div class="tab-btn" data-tab="reels">Reels</div>
+        <div class="tab-btn" data-tab="inbox">Inbox</div>
+        <div class="tab-btn" data-tab="profile">Profile</div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
